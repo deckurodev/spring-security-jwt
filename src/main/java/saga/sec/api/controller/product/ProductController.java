@@ -1,6 +1,8 @@
 package saga.sec.api.controller.product;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +15,13 @@ import saga.sec.auth.config.security.SecurityUtil;
 public class ProductController {
 
 	@GetMapping
-	public void test() {
-		log.info("auth : {}", SecurityUtil.currentUserId());
+	public void look() {
+		log.info("look : {}", SecurityUtil.currentUserId());
+	}
+
+	@PreAuthorize(value = "hasRole('ADMIN')")
+	@PostMapping
+	public void create() {
+		log.info("create : {}", SecurityUtil.currentUserId());
 	}
 }

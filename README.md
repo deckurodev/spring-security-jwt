@@ -8,6 +8,7 @@
 - **Spring Security 6.x**
 ![sec.png](src/main/resources/static/sec.png)
 
+---
 
 ## ProviderManager, Providers 구성
 - ### filter 빈 구성 시에 JwtAuthenticationProvider 설정
@@ -39,3 +40,6 @@ ProviderManager의 핵심 로직은 다음과 같다. supports() 조건을 만�
 
 ![providers_code.png](src/main/resources/static/providers_code.png)
 
+
+---
+## Providers

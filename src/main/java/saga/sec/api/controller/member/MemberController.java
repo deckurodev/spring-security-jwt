@@ -1,5 +1,6 @@
 package saga.sec.api.controller.member;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +22,9 @@ public class MemberController {
 		memberService.register(request.email(), request.password(), request.role());
 	}
 
-	@PutMapping("/auth/add")
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PutMapping("/auth")
 	public void registerNewAuth(@RequestBody MemberRequest request) {
-		memberService.register(request.email(), request.password(), request.role());
+		memberService.addRoleToMember(request.email(), request.role());
 	}
 }

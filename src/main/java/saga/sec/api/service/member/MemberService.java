@@ -43,4 +43,9 @@ public class MemberService {
 	public Member findById(Long userId) {
 		return memberRepository.findById(userId).orElseThrow(MemberNotFoundException::new);
 	}
+
+	public void addRoleToMember(String email, RoleType roleType) {
+		Member member = findByEmail(email);
+		memberRoleService.assignRole(member, roleType);
+	}
 }
